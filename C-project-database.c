@@ -656,28 +656,20 @@ void Display(FILE *ptr)
                 if (recount == 1)
                 {
                     printf("\n\nFirst Employee in Front  :: \n") ;
-                    printf("\t\t Name : %s\n",nptr->e.name) ;
-                    printf("\t\t Age : %d\n",nptr->e.age) ;
-                    printf("\t\t Id : %d\n",nptr->e.id) ;
-                    printf("\t\t Salary : %0.0f\n\n",nptr->e.salary) ;
-
                 }
                 else if(recount == newcount)
                 {
                     printf("Last Employee in Back :: \n") ;
-                    printf("\t\t Name : %s\n",nptr->e.name) ;
-                    printf("\t\t Age : %d\n",nptr->e.age) ;
-                    printf("\t\t Id : %d\n",nptr->e.id) ;
-                    printf("\t\t Salary : %0.0f\n\n",nptr->e.salary) ;
                 }
                 else
                 {
                     printf("Employee [ %d ] :: \n",recount) ;
-                    printf("\t\t Name : %s\n",nptr->e.name) ;
-                    printf("\t\t Age : %d\n",nptr->e.age) ;
-                    printf("\t\t Id : %d\n",nptr->e.id) ;
-                    printf("\t\t Salary : %0.0f\n\n",nptr->e.salary) ;
                 }
+                printf("\t\t Name : %s\n",nptr->e.name) ;
+                printf("\t\t Age : %d\n",nptr->e.age) ;
+                printf("\t\t Id : %d\n",nptr->e.id) ;
+                printf("\t\t Salary : %0.0f\n\n",nptr->e.salary) ;
+                
                 nptr = nptr->next ;
             }
         }
