@@ -326,21 +326,65 @@ void Enqueue(FILE *ptr,int *recount)
         fflush(stdin) ;
         gets(newPtr->e.name) ;
         fflush(stdin) ;
-        printf("Enter Employee id : ") ;
-        scanf("%d",&newPtr->e.id) ;
+
         printf("Enter Employee age : ") ;
         scanf("%d",&newPtr->e.age) ;
         printf("Enter Employee salary : ") ;
         scanf("%f",&newPtr->e.salary) ;
+
+        int id,flage=0;
+        do
+        {
+            fflush(stdin);
+            printf("enter employee id :");
+            scanf("%d",&id);
+        }while(!isspace(newPtr->e.id) && getchar()!='\n' ||  id<0) ;
+
         newPtr->next = NULL ;
         if(front == NULL)
         {
+            newPtr->e.id = id ;
             front = back = newPtr ;
-        }else
-        {
-            back->next = newPtr ;
-            back = newPtr ;
         }
+        else
+        {
+            node *temp=front;
+            // check if current id is equal to another id ...
+              while(temp!= NULL)
+                {
+
+                    if(id==temp->e.id)
+                    {
+                        flage=1;
+                        break;
+                    }
+                    temp=temp->next;
+                }
+        while(flage==1)
+            {
+                printf("\n******invalid id****** \n please enter again id: ");
+                scanf("%d",&id);
+                temp = front ;
+                 while(temp!= NULL)
+                {
+
+                    if(id==temp->e.id)
+                    {
+                        flage=1;
+                        break;
+                    }
+                    else{
+                        flage=5;
+                    }
+                    temp=temp->next;
+                }
+
+        }
+            newPtr->e.id=id;
+            back->next = newPtr ;
+            back= newPtr ;
+        }
+
         fwrite(&newPtr->e,sizeof(newPtr->e),1,ptr) ;
         fprintf(ptr,"\n") ;
         (*recount)++ ;
