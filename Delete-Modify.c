@@ -223,3 +223,17 @@ void Modify(FILE *ptr)
                 system("cls") ;
         }
 }
+
+int CountData(FILE *ptr)
+{
+        node *counterPtr  ;
+        int c=0 ;
+        counterPtr = (node *)malloc(sizeof(node)) ;
+        rewind(ptr) ;
+        while( fread(&counterPtr->e,sizeof(counterPtr->e),1,ptr) == 1 )
+        {
+             c++ ;
+             fseek(ptr,1,SEEK_CUR) ;
+        }
+        return c ;
+}
