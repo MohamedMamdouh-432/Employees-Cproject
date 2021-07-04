@@ -29,6 +29,7 @@ void showcursor() ;
 void gotoxy(int x,int y) ;
 int    CountData(FILE *ptr) ;
 int    CheckName(char name[30]) ;
+int    CheckSpecialCharacter(char name[30]) ;
 void Enqueue(FILE *ptr,int *recount) ;
 void Dequeue(FILE *ptr,int *recount) ;
 void DeleteByName(FILE *ptr,int *recount) ;
@@ -317,11 +318,20 @@ int CheckName(char name[30])
     for (i = 0; i < strlen(name); ++i)
     {
         if (!(isalpha(name[i])) && (name[i] != '\n') && (name[i] != ' '))
-        {
              return 0;
-        }
     }
     return 1;
+}
+
+int CheckSpecialCharacter(char name[30])
+{
+    int i ;
+    for(i=0 ; i<strlen(name) ; i++)
+    {
+        if(name[i] == '+' || name[i] == '-')
+            return 0 ;
+    }
+    return 1 ;
 }
 
 void Enqueue(FILE *ptr,int *recount)
@@ -667,9 +677,12 @@ void Modify(FILE *ptr)
                         scanf("%f",&dtr->e.salary) ;
                         }while(!isspace(dtr->e.salary) && getchar()!='\n' || dtr->e.salary<0);
 
-                            printf("\n enter New id : ");
-                            fflush(stdin);
-                            scanf("%d",&code);
+                            do
+                            {
+                                fflush(stdin);
+                                printf("enter New id : ");
+                                scanf("%d",&code);
+                            }while(!isspace(dtr->e.id) && getchar()!='\n' ||  code<0) ;
                                         node *holder=front ;
                                         // check the id
                                           while(holder!= NULL)
